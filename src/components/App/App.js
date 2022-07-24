@@ -13,7 +13,9 @@ function App() {
         </Route>
         
         {/* Details page */}
-        <Detail />
+        <Route>
+          <Detail />
+        </Route>
 
         {/* Add Movie page */}
       </Router>
