@@ -14,6 +14,8 @@ import axios from 'axios';
 // Create the rootSaga generator function
 function* rootSaga() {
     yield takeEvery('FETCH_MOVIES', fetchAllMovies);
+    // GET_DETAILS key is from movieItem. 
+    yield takeEvery('GET_DETAILS', getMovieDetails);
 }
 
 function* fetchAllMovies() {
@@ -27,6 +29,18 @@ function* fetchAllMovies() {
         console.log('get all error');
     }
         
+}
+
+function* getMovieDetails(action) {
+    try {
+        const details = yield axios.get(`/api/movie/details/${action.payload.id}`);
+        yield console.log('details from getMovieDetails HERE:', details);
+        // what do i need the payload type to be?
+        yield put({ type: 'SHOW_DETAILS', payload: details.data.id})
+    }
+    catch {
+        console.log('error in getMovieDetails in index.js');
+    }
 }
 
 // Create sagaMiddleware
@@ -55,6 +69,7 @@ const genres = (state = [], action) => {
 const movieDetailsReducer = (state = {}, action) => {
     switch (action.type) {
         case 'SHOW_DETAILS':
+            console.log('movieDetails reducer action.payload is:', action.payload);
             return action.payload;
         default:
             return state;

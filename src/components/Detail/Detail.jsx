@@ -5,6 +5,7 @@ function Detail() {
 
     const handleClick = () => {
         // m TODO add codeblock
+        history.push('/');
     }
 
 
