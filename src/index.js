@@ -36,10 +36,10 @@ function* getMovieDetails(action) {
         const details = yield axios.get(`/api/movie/details/${action.payload.id}`);
         yield console.log('details from getMovieDetails HERE:', details);
         // what do i need the payload type to be?
-        yield put({ type: 'SHOW_DETAILS', payload: details.data.id})
+        yield put({ type: 'SHOW_DETAILS', payload: details.data})
     }
-    catch {
-        console.log('error in getMovieDetails in index.js');
+    catch(error) {
+        console.log('error in getMovieDetails in index.js', error);
     }
 }
 
@@ -66,7 +66,8 @@ const genres = (state = [], action) => {
     }
 }
 // START HERE TOMORROW. 
-const movieDetailsReducer = (state = {}, action) => {
+const movieArray = [''];
+const movieDetailsReducer = (state = [], action) => {
     switch (action.type) {
         case 'SHOW_DETAILS':
             console.log('movieDetails reducer action.payload is:', action.payload);

@@ -28,7 +28,14 @@ router.get('/details/:id', (req, res) => {
     ON genres.id = movies_genres.genre_id
     WHERE movie_id = $1;`
     // values must be an array
-    pool.query(query, [movieId]);
+    pool.query(query, [movieId])
+      .then((result) => {
+        res.send(result.rows);
+      })
+      .catch((error) => {
+        console.log(`Error on query /:id ${error}`);
+        res.sendStatus(500);
+      });
   }
   catch(error) {
     console.log('ERROR in Movie Router get(/:id', error);
