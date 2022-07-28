@@ -13,7 +13,7 @@ function App() {
         </Route>
         
         {/* Details page */}
-        <Route path='details/:id' exact>
+        <Route path='/details' exact>
           <Detail />
         </Route>
 

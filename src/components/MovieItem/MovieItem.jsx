@@ -9,13 +9,15 @@ function MovieItem({ movie }) {
     const detailsForMovie = useSelector((store) => store.movieDetailsReducer);
     const genreDetails = useSelector((store) => store.genres);
 
+    // Keys like GET_DETAILS will always link to a SAGA!!!! SAGA 
+    // then calls a Generator function in index. 
     const fetchDetails = () => {
         console.log('movie item in function fetchDetails is:', movie);
         dispatch({
             type: 'GET_DETAILS',
             payload: movie
         })
-        history.push(`/${movie.id}`)
+        history.push(`/details`)
     }
     return (
         <>

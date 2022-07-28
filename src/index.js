@@ -66,7 +66,10 @@ const genres = (state = [], action) => {
     }
 }
 // START HERE TOMORROW. 
-const movieArray = [''];
+// created empty array to allow the details to render properly on click. 
+// without it, you will get an undefined error from the rendering happening before
+// adding to the reducer is complete. 
+// const movieArray = [''];
 const movieDetailsReducer = (state = [], action) => {
     switch (action.type) {
         case 'SHOW_DETAILS':
